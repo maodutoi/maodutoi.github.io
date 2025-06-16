@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>&lt;model-viewer&gt; template</title>
+    <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <!-- <model-viewer> HTML element -->
+    	<model-viewer src="new material variants with animation .glb" ar ar-modes="scene-viewer webxr quick-look" camera-controls tone-mapping="neutral" poster="poster.png" shadow-intensity="1" auto-rotate animation-name="drawer animation" camera-orbit="1388deg 4.351deg 0.7455m" field-of-view="26.26deg" id="EnsureSafe">
+
+      <button class="Hotspot" slot="hotspot-1" data-surface="10 0 8320 8346 8321 0.251 0.487 0.262" data-visibility-attribute="visible" >
+          <div class="HotspotAnnotation">Printer</div>
+      </button><button class="Hotspot" slot="hotspot-2" data-surface="9 0 38 2 23 0.269 0.662 0.069" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Drawer
+          </div>
+      </button><button class="Hotspot" slot="hotspot-3" data-surface="14 0 3612 3638 3615 0.352 0.020 0.628" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Tactile Grooves</div>
+      </button><button class="Hotspot" slot="hotspot-4" data-surface="15 0 148 149 150 0.126 0.385 0.489" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Flexible Mat
+          </div>
+      </button><button class="Hotspot" slot="hotspot-5" data-surface="2 0 1902 1981 1903 0.432 0.424 0.145" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Sensor Mat</div>
+      </button>
+      <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+      </div>
+      <button slot="ar-button" id="ar-button">
+          View in your space
+      </button>
+      <div id="ar-prompt">
+          <img src="ar_hand_prompt.png">
+      </div>
+    </model-viewer> 
+
+
+<div class="control-panel">
+
+<header class="site-header">
+  EnsureSafe
+</header>
+
+
+
+  <!-- View Position --------------------------------------------------------->
+  <div class="control-group">
+    <label>View:</label>
+    <button class="theme-button" onclick="setOrbit('0deg 90deg 0.7101m')">Front</button>
+    <button class="theme-button" onclick="setOrbit('0deg 0deg 0.7101m')">Top</button>
+    <button class="theme-button" onclick="setOrbit('0deg 187.96deg 0.7101m')">Bottom</button>
+  </div>
+
+  <!-- Style Variants -->
+<div class="control-group">
+  <label>Style:</label>
+  <button onclick="VBtn01(); changeBackground('#8b5a2b')">Umber 🟤</button>
+  <button onclick="VBtn02(); changeBackground('#dcdcdc')">Ashen ⚫</button>
+  <button onclick="VBtn03(); changeBackground('#f5f5f5')">Ivory ⚪</button>
+</div>
+
+
+  <!-- Animations -->
+  <div class="control-group">
+    <label>Animation:</label>
+    <button onclick="Btn01()">Drawer Open</button>
+    <button onclick="Btn02()">Mat Open</button>
+    <button onclick="pauseAnimation()">Pause</button>
+  </div>
+
+</div>
+
+
+<!------------------------------------------------------------------------------->
+
+
+    <script>
+function VBtn01() {
+    document.getElementById('EnsureSafe').variantName = "Grey";
+}
+
+function VBtn02() {
+    document.getElementById('EnsureSafe').variantName = "White";
+}
+
+function VBtn03() {
+    document.getElementById('EnsureSafe').variantName = "Brown";
+}
+</script>
+
+
+<!-- JavaScript Function -------------------------------------------------------------------------------------->
+<script>
+  function setOrbit(orbit) {
+    document.getElementById('EnsureSafe').autoRotate = false;
+    document.getElementById('EnsureSafe').cameraControls = true;
+    document.getElementById('EnsureSafe').cameraOrbit = orbit;
+  }
+</script>
+
+<!--------------------------------------------------------------------------------------------------------------->
+
+
+
+</script>
+
+
+
+
+
+<script>
+function Btn01() {
+    document.getElementById('EnsureSafe').pause();
+    document.getElementById('EnsureSafe').animationName = "drawer animation";
+    document.getElementById('EnsureSafe').play();
+}
+
+function Btn02() {
+    document.getElementById('EnsureSafe').pause();
+    document.getElementById('EnsureSafe').animationName = "mat open";
+    document.getElementById('EnsureSafe').play();
+}
+function pauseAnimation() {
+	document.getElementById('EnsureSafe').pause();
+}
+</script>
+
+
+
+
+
+
+<!------------------------------------------------------------------------------------------->
+
+<!-- Hotspot 1: Sensor Mat -->
+<button class="Hotspot" slot="hotspot-1" data-visibility-attribute="visible">
+  <div class="HotspotAnnotation">Sensor Mat</div>
+</button>
+
+<!-- Hotspot 2: Flexible Mat -->
+<button class="Hotspot" slot="hotspot-2" data-visibility-attribute="visible">
+  <div class="HotspotAnnotation">Flexible Mat</div>
+</button>
+
+<!-- Hotspot 3: Tactile Grooves -->
+<button class="Hotspot" slot="hotspot-3" data-visibility-attribute="visible">
+  <div class="HotspotAnnotation">Tactile Grooves</div>
+</button>
+
+<!-- Hotspot 4: Printer -->
+<button class="Hotspot" slot="hotspot-4" data-visibility-attribute="visible">
+  <div class="HotspotAnnotation">Printer</div>
+</button>
+
+<!-- Hotspot 5: Drawer -->
+<button class="Hotspot" slot="hotspot-5" data-visibility-attribute="visible">
+  <div class="HotspotAnnotation">Drawer</div>
+</button>
+
+  <style>
+    .HotspotAnnotation {
+      background: white;
+      border-radius: 10px;
+      padding: 5px 10px;
+      font-size: 20px;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+      transition: opacity 0.3s;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+
+    .Hotspot:hover .HotspotAnnotation {
+      opacity: 1;
+    }
+
+    .HotspotAnnotation {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+    .control-panel {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    font-family: 'Noto Sans JP', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+  }
+
+  .control-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .control-group label {
+    font-weight: bold;
+    margin-right: 8px;
+  }
+
+  .control-panel button {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .control-panel button:hover {
+    background: #e6e6e6;
+  }
+
+
+.site-header {
+  position: fixed; /* stays in place even if page scrolls */
+  top: 0;
+  left: 0;
+  width: auto;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: 'Noto Sans JP', sans-serif;
+  z-index: 1000;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.theme-button {
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 6px;
+  padding: 6px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.theme-button {
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 6px;
+  padding: 6px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+/* Hover effect (slightly darker version) */
+.theme-button:hover {
+  filter: brightness(0.9);
+}
+
+/* Optional: Add a “pressed” feel */
+.theme-button:active {
+  transform: scale(0.96);
+}
+
+
+
+#EnsureSafe.wood {
+  background-image: url('wood_texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: unset;
+}
+
+#EnsureSafe.stone {
+  background-image: url('stone_texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: unset;
+}
+
+#EnsureSafe.white {
+  background-image: none;
+  background-color: #ffffff;
+}
+
+
+
+  </style>
+
+
+<script>
+  function showHotspot(id) {
+    document.getElementById(id).style.visibility = "visible";
+  }
+
+  function hideHotspot(id) {
+    document.getElementById(id).style.visibility = "hidden";
+  }
+</script>
+
+<script>
+function changeBackground(colorCode) {
+  const viewer = document.getElementById('EnsureSafe');
+
+  // Remove all previous background classes
+  viewer.classList.remove("wood", "stone", "white");
+
+  // Add the matching class based on colorCode
+  if (colorCode === '#8b5a2b') {
+    viewer.classList.add("wood");
+  } else if (colorCode === '#dcdcdc') {
+    viewer.classList.add("stone");
+  } else if (colorCode === '#f5f5f5') {
+    viewer.classList.add("white");
+  }
+}
+</script>
+
+
+<!----------------------------------------------------------------------------------->
+
+    <script src="script.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  </body>
+</html>
